@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package code_agile;
+package Form;
+
+import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -89,7 +92,7 @@ public class FrmHoaDon extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã SP", "Tên SP", "Giá", "Giảm giá", "Số lượng", "Thành tiền"
+                "Mã SP", "Tên SP", "Giá", "Giảm giá(%)", "Số lượng", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(tblThongTinMatHang);
@@ -98,6 +101,11 @@ public class FrmHoaDon extends javax.swing.JInternalFrame {
 
         btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_thanhtoan.png"))); // NOI18N
         btnThanhToan.setText("THANH TOÁN");
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanActionPerformed(evt);
+            }
+        });
 
         btnHuyDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_xoa.png"))); // NOI18N
         btnHuyDonHang.setText("HỦY ĐƠN HÀNG");
@@ -221,6 +229,72 @@ public class FrmHoaDon extends javax.swing.JInternalFrame {
     private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaHDActionPerformed
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        try {
+            //check null
+            if (txtMaHD.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập mã hóa đơn!");
+                txtMaHD.requestFocus();
+                return;
+            } else if (txtMaNV.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập mã nhân viên!");
+                txtMaNV.requestFocus();
+                return;
+            } else if (txtTenNV.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập tên nhân viên!");
+                txtTenNV.requestFocus();
+                return;
+            } else if (txtNgayBan.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập ngày bán!");
+                txtNgayBan.requestFocus();
+                return;
+            } else if (txtMaKH.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập mã khách hàng!");
+                txtMaKH.requestFocus();
+                return;
+            } else if (txtSDT.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập số điện thoại!");
+                txtSDT.requestFocus();
+                return;
+            } else if (txtTenKH.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Chưa nhập tên khách hàng!");
+                txtTenKH.requestFocus();
+                return;
+            }
+            //check ngay ban
+            Date ngay;
+            try {
+                ngay = Date.valueOf(txtNgayBan.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ngày phải có định dạng yyyy-mm-dd");
+                txtNgayBan.requestFocus();
+                return;
+            }
+            //check sdt
+
+            try {
+                int sodt = Integer.parseInt(txtSDT.getText());
+                if (sodt < 0) {
+                    JOptionPane.showMessageDialog(this, "Số điện thoại phải là số dương !");
+                    txtSDT.requestFocus();
+                    return;
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số nguyên!");
+                txtSDT.requestFocus();
+                return;
+            }
+            if (txtSDT.getText().length() > 10 || txtSDT.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải có 10 chữ số !");
+                txtSDT.requestFocus();
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnThanhToanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
