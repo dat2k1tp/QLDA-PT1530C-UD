@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package code_agile;
+package Form;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,10 +35,10 @@ public class dang_nhap extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         ckRemember = new javax.swing.JCheckBox();
         btnDangnhap = new javax.swing.JButton();
         btnDangki = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(900, 700));
@@ -47,12 +49,6 @@ public class dang_nhap extends javax.swing.JInternalFrame {
         jLabel2.setText("USERNAME:");
 
         jLabel3.setText("PASSWORD:");
-
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
 
         ckRemember.setText("Remember?");
 
@@ -91,18 +87,24 @@ public class dang_nhap extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ckRemember)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(ckRemember)
+                                        .addGap(213, 213, 213))
+                                    .addComponent(txtPassword)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(325, 325, 325)
                         .addComponent(btnDangnhap)
                         .addGap(38, 38, 38)
                         .addComponent(btnDangki)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDangki, btnDangnhap});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUsername});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,16 +131,24 @@ public class dang_nhap extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void btnDangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangnhapActionPerformed
-        // TODO add your handling code here:
+        if(txtUsername.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Nhập username");
+            txtUsername.requestFocus();
+            return;
+        }else if(txtPassword.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Nhập password");
+            txtPassword.requestFocus();
+            return;
+        }if(ckRemember.isSelected()){
+            JOptionPane.showMessageDialog(this, "Đã ghi nhớ\nLogin success!");
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Login success!");
     }//GEN-LAST:event_btnDangnhapActionPerformed
 
     private void btnDangkiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangkiActionPerformed
-        
+      
     }//GEN-LAST:event_btnDangkiActionPerformed
 
 
@@ -149,7 +159,7 @@ public class dang_nhap extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
